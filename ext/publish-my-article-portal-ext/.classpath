@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="docroot/WEB-INF/ext-impl/src"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/ext-impl/classes/com/liferay/portal/deploy/dependencies/ext-rohm-global-portal-ext-util-bridges.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/ext-impl/classes/com/liferay/portal/deploy/dependencies/ext-rohm-global-portal-ext-util-java.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/ext-impl/classes/com/liferay/portal/deploy/dependencies/ext-rohm-global-portal-ext-util-taglib.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/ext-impl/ext-impl.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/ext-service/ext-service.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/ext-util-bridges/ext-util-bridges.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/ext-util-java/ext-util-java.jar"/>
+	<classpathentry kind="lib" path="docroot/WEB-INF/ext-util-taglib/ext-util-taglib.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/rohm/liferay1/liferay-portal-6.0-ee-sp2/tomcat-6.0.32/webapps/ROOT/WEB-INF/lib/portal-impl.jar"/>
+	<classpathentry kind="lib" path="C:/rohm/liferay1/liferay-portal-6.0-ee-sp2/tomcat-6.0.32/lib/ext/portal-service.jar"/>
+	<classpathentry kind="lib" path="C:/rohm/liferay1/liferay-portal-6.0-ee-sp2/tomcat-6.0.32/lib/ext/portlet.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
