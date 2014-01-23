@@ -27,10 +27,13 @@ public class C0deSutraJournalPortletDataHandlerImpl extends JournalPortletDataHa
 	private static final Log _log = LogFactoryUtil.getLog(C0deSutraJournalPortletDataHandlerImpl.class);
 	
 	private static final String _NAMESPACE = "journal";
-	
+
 	@Override
-	protected String doExportData(PortletDataContext portletDataContext, String portletId, PortletPreferences portletPreferences) throws Exception {
-		_log.info("C0deSutraJournalPortletDataHandlerImpl.doExportData() called");
+	protected String doExportData(
+			PortletDataContext portletDataContext, String portletId,
+			PortletPreferences portletPreferences)
+		throws Exception {
+
 		portletDataContext.addPermissions(
 			"com.liferay.portlet.journal",
 			portletDataContext.getScopeGroupId());
@@ -58,11 +61,15 @@ public class C0deSutraJournalPortletDataHandlerImpl extends JournalPortletDataHa
 		}
 
 		Element templatesElement = rootElement.addElement("templates");
+		Element dlFileEntryTypesElement = rootElement.addElement(
+			"dl-file-entry-types");
 		Element dlFoldersElement = rootElement.addElement("dl-folders");
 		Element dlFilesElement = rootElement.addElement("dl-file-entries");
 		Element dlFileRanksElement = rootElement.addElement("dl-file-ranks");
-		Element igFoldersElement = rootElement.addElement("ig-folders");
-		Element igImagesElement = rootElement.addElement("ig-images");
+		Element dlRepositoriesElement = rootElement.addElement(
+			"dl-repositories");
+		Element dlRepositoryEntriesElement = rootElement.addElement(
+			"dl-repository-entries");
 
 		List<JournalTemplate> templates = JournalTemplateUtil.findByGroupId(
 			portletDataContext.getScopeGroupId());
@@ -72,9 +79,10 @@ public class C0deSutraJournalPortletDataHandlerImpl extends JournalPortletDataHa
 					template.getModifiedDate())) {
 
 				exportTemplate(
-					portletDataContext, templatesElement, dlFoldersElement,
-					dlFilesElement, dlFileRanksElement, igFoldersElement,
-					igImagesElement, template, true);
+					portletDataContext, templatesElement,
+					dlFileEntryTypesElement, dlFoldersElement, dlFilesElement,
+					dlFileRanksElement, dlRepositoriesElement,
+					dlRepositoryEntriesElement, template);
 			}
 		}
 
@@ -91,12 +99,10 @@ public class C0deSutraJournalPortletDataHandlerImpl extends JournalPortletDataHa
 
 		Element articlesElement = rootElement.addElement("articles");
 
-		if (portletDataContext.getBooleanParameter(_NAMESPACE, "articles")) {
+		if (portletDataContext.getBooleanParameter(_NAMESPACE, "web-content")) {
 			List<JournalArticle> articles = JournalArticleUtil.findByGroupId(
 				portletDataContext.getScopeGroupId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, new ArticleIDComparator(true));
-			
-			
 			boolean publishMyArticle = false;
 			String publishMyArticleId = null; 
 			if (portletDataContext.getParameterMap().containsKey("publish-my-article-id")) {
@@ -112,9 +118,9 @@ public class C0deSutraJournalPortletDataHandlerImpl extends JournalPortletDataHa
 						_log.debug(">>>>>>>>> publishing with articledId = "+article.getArticleId());
 						exportArticle(
 							portletDataContext, articlesElement, structuresElement,
-							templatesElement, dlFoldersElement, dlFilesElement,
-							dlFileRanksElement, igFoldersElement, igImagesElement,
-							article, true);
+							templatesElement, dlFileEntryTypesElement, dlFoldersElement,
+							dlFilesElement, dlFileRanksElement, dlRepositoriesElement,
+							dlRepositoryEntriesElement, article, null, true);
 					}
 				}	
 			} else {			
@@ -122,9 +128,9 @@ public class C0deSutraJournalPortletDataHandlerImpl extends JournalPortletDataHa
 					
 					exportArticle(
 						portletDataContext, articlesElement, structuresElement,
-						templatesElement, dlFoldersElement, dlFilesElement,
-						dlFileRanksElement, igFoldersElement, igImagesElement,
-						article, true);
+						templatesElement, dlFileEntryTypesElement, dlFoldersElement,
+						dlFilesElement, dlFileRanksElement, dlRepositoriesElement,
+						dlRepositoryEntriesElement, article, null, true);
 				}
 			}
 		}
