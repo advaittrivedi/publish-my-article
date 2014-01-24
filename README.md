@@ -1,6 +1,8 @@
 publish-my-article
 ==================
 
+To learn what this plugins does: http://www.coolc0de.com/2012/07/liferay-publish-article-by-article-id.html
+
 How to deploy ext
 ==================
 Clone the https://github.com/advaittrivedi/publish-my-article/tree/master/ext/publish-my-article-portal-ext in parent "ext" folder of Liferay plugins-sdk.
